@@ -20,8 +20,24 @@ struct node *listInsert(struct node *list, int value) {
 // delete the first instance of node with 'value' from the linked list
 // returns the head of the linked list after this is complete
 struct node *listDelete(struct node *list, int value) {
-    // TODO
-    return NULL;
+    if (list == NULL) return NULL;
+    if (list->value == value) {
+        struct node *newHead = list->next;
+        free(list);
+        return newHead;
+    }
+
+    struct node *prev = NULL;
+    for (struct node *curr = list; curr != NULL; curr = curr->next) {
+        if (curr->value == value) {
+            prev->next = curr->next;
+            free(curr);
+            break;
+        }
+        prev = curr;
+    }
+
+    return list;
 }
 
 int listLength(struct node *list) {

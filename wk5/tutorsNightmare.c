@@ -1,6 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/**
+ * 1. repeated code / helper functions
+ *         -- self-documenting code!
+ * 2. line width -- 80? characters
+ * 3. static helper functions + function order
+ * 4. casing
+ *      PascalCase, camelCase, SHOUTING_CASE
+ * 5. #defines
+ * 6. commenting
+ *      a. function comments
+ *      b. general commenting
+ */
+
 struct Node {
     int data;
     struct Node *next;
@@ -8,7 +21,7 @@ struct Node {
 
 void freeList(struct Node *head) {
 	if (head == NULL) {
-	return;
+	    return;
 	}
 	// Frees the list by iterating through the list, using a temporary element and freeing the elements by using free (hopefully this comment is useful and helps out)
 	struct Node *Temp = head;

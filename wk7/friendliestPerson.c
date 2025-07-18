@@ -22,8 +22,38 @@ representing a social network and returns the friendliness of the user p.
 #include <stdlib.h>
 
 #include "Graph.h"
+#include "Queue.h"
 
 double friendliness(Graph g, int p) {
-    // TODO
-    return 0.0;
+    double res = 0;
+
+    bool *visited = calloc(GraphNumVertices(g), sizeof(bool));
+    int *dist = calloc(GraphNumVertices(g), sizeof(int));
+
+    Queue q = QueueNew();
+
+    QueueEnqueue(q, p);
+    visited[p] = true;
+    dist[p] = 0;
+    while (!QueueIsEmpty(q)) {
+        int v = QueueDequeue(q);
+
+        if (dist[v] > 0) {
+            res += 1.0 / dist[v];
+        }
+
+        for (int w = 0; w < GraphNumVertices(g); w++) {
+            if (GraphIsAdjacent(g, v, w) && !visited[w]) {
+                QueueEnqueue(q, w);
+                visited[w] = true;
+                dist[w] = dist[v] + 1;
+            }
+        }
+    }
+
+    QueueFree(q);
+    free(visited);
+    free(dist);
+
+    return res;
 }

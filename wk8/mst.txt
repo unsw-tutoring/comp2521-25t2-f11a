@@ -1,0 +1,55 @@
+sort edges 
+    O(E log E)
+
+for each edge (v,w): O(E)
+    - check if w is reachable from v O(V+E)
+    - add to graph O(1)
+
+    - if we have added n-1 edges, exit
+
+total: O(E log E + E(V + E))
+        = O(E^2)
+
+union find
+- find - O(log n)
+- union - O(log n)
+
+
+sort edges 
+    O(E log E)
+for each edge (v,w): O(E)
+    - check if w is reachable from v - find(v) == find(w)
+        O(log V)
+    - add to graph O(1)
+    - union(v, w) O(log V)
+
+    - if we have added n-1 edges, exit
+
+total: O(E log E + E log V)
+        = O(E log V)
+- better for sparse graphs
+
+log E <= log V^2 = 2 log V
+
+
+
+
+for each of the V-1 edges i eventually add: -- O(V)
+    loop through all edges to find the smallest one that is between a vertex 'in the MST' and 'not in the MST' -- O(E)
+
+total: O(EV)
+
+
+inserting all the edges -> E log E
+
+
+O(E + V log V) -> Fibonacci heap??
+- better for dense graphs
+
+
+
+
+
+priority queue
+- insert - O(log n)
+- extract min - O(log n)
